@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ProAct Legal Solutions — Website
 
-## Getting Started
+Dark editorial multi-page site for ProAct Legal Solutions (Ontario), built with Next.js App Router, TypeScript, and Tailwind CSS.
 
-First, run the development server:
+## Quick start
 
 ```bash
+npm install
+cp .env.example .env.local
+# add RESEND_API_KEY and OPENAI_API_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Environment variables
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Purpose |
+|----------|---------|
+| `NEXT_PUBLIC_SITE_URL` | Canonical site URL |
+| `RESEND_API_KEY` | Contact form email delivery |
+| `CONTACT_TO_EMAIL` | Inbox for form submissions (default `info.ptls@gmail.com`) |
+| `CONTACT_FROM_EMAIL` | Verified Resend from address |
+| `OPENAI_API_KEY` | Server-side AI chat only |
+| `OPENAI_MODEL` | Optional model override (default `gpt-4o-mini`) |
 
-## Learn More
+Never commit `.env.local` or put API keys in client code.
 
-To learn more about Next.js, take a look at the following resources:
+## Scripts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `npm run dev` — development server
+- `npm run build` — production build
+- `npm run start` — serve production build
+- `npm run lint` — ESLint
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Content notes / firm review
 
-## Deploy on Vercel
+- Small Claims monetary limit published as **$50,000** (Home + Commercial Lease sources). Services Word doc also contained older `$35,000` wording — normalized; confirm before launch.
+- Contact details from approved logo lockup: **416-822-6860**, **info.ptls@gmail.com**.
+- Insights has no articles yet (placeholder only).
+- Privacy Policy and Website Terms are drafts for firm review.
+- Street address and Law Society / licensing registration numbers were not in source materials and are omitted.
+- Design reference: `design-reference/site_refrence_image.png` (not served as a page).
+- Approved logos in `public/brand/` — do not recolor or rebuild.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Content modules: `content/`
+- UI: `src/components/`
+- APIs: `src/app/api/contact`, `src/app/api/chat`
+- Hero scroll-scrub: `src/components/hero/ScrollScrubHero.tsx` (native rAF + `video.currentTime`)
