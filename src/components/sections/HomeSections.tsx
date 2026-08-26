@@ -4,6 +4,7 @@ import { useState } from "react";
 import { site } from "../../../content/site";
 import { homeValue } from "../../../content/home";
 import { ScrollBlurReveal } from "@/components/motion/ScrollBlurReveal";
+import { ScrollSlideIn } from "@/components/motion/ScrollSlideIn";
 import { Section } from "./Section";
 
 function EthosFlipCard({
@@ -55,7 +56,11 @@ export function ValueProp() {
         >
           Firm
         </p>
-        <div className="max-w-md shrink-0 lg:max-w-[22rem] xl:max-w-md">
+        <ScrollSlideIn
+          from="left"
+          distance={180}
+          className="max-w-md shrink-0 lg:max-w-[22rem] xl:max-w-md"
+        >
           <ScrollBlurReveal as="p" className="section-label mb-3">
             {homeValue.eyebrow}
           </ScrollBlurReveal>
@@ -65,16 +70,25 @@ export function ValueProp() {
           >
             {homeValue.title}
           </ScrollBlurReveal>
-        </div>
+        </ScrollSlideIn>
         <div className="hidden flex-1 lg:block" aria-hidden />
-        <ScrollBlurReveal
-          as="p"
-          className="ml-auto w-full max-w-sm shrink-0 text-left text-base text-text-muted md:text-lg lg:max-w-md lg:pt-4 lg:text-right"
+        <ScrollSlideIn
+          from="right"
+          distance={180}
+          delay={0.18}
           startAt={0.88}
           endAt={0.22}
+          className="ml-auto w-full max-w-sm shrink-0 lg:max-w-md"
         >
-          {homeValue.body}
-        </ScrollBlurReveal>
+          <ScrollBlurReveal
+            as="p"
+            className="w-full text-left text-base text-text-muted md:text-lg lg:pt-4 lg:text-right"
+            startAt={0.88}
+            endAt={0.22}
+          >
+            {homeValue.body}
+          </ScrollBlurReveal>
+        </ScrollSlideIn>
       </div>
     </Section>
   );

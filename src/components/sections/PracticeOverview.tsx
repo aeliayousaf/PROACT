@@ -13,7 +13,7 @@ export function PracticeOverview() {
 
   return (
     <Section id="practice-overview" className="border-transparent bg-ink/45 backdrop-blur-sm">
-      <div className="relative mb-10 flex flex-col gap-8 md:mb-14 lg:min-h-[32vh] lg:flex-row lg:items-start lg:justify-between lg:gap-12">
+      <div className="relative mb-5 flex flex-col gap-8 md:mb-6 lg:flex-row lg:items-start lg:justify-between lg:gap-12">
         <p
           className="vertical-label vertical-label-side hidden xl:block"
           aria-hidden

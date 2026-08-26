@@ -169,7 +169,7 @@ export function Header() {
   }
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-[color-mix(in_srgb,var(--ink)_88%,transparent)] backdrop-blur-md">
+    <header className="fixed inset-x-0 top-0 z-40 border-b border-line/40 bg-[color-mix(in_srgb,var(--ink)_42%,transparent)] backdrop-blur-sm">
       <div className="mx-auto flex h-[var(--header-h)] max-w-7xl items-center justify-between gap-4 px-[var(--grid-gutter)]">
         <Link
           href="/"

@@ -13,7 +13,9 @@ import {
 /** Viewport-heights of page scroll that play the full sequence. */
 const SCRUB_VH = 2.5;
 /** Viewport-heights of scroll before hero copy fully fades out. */
-const HERO_COPY_FADE_VH = 0.45;
+const HERO_COPY_FADE_VH = 0.4;
+/** Longer scroll range for the left/right headline exit (slower than the fade). */
+const HERO_COPY_SLIDE_VH = 1.05;
 /** Remaining sequence played while scrolling through Why ProAct. */
 const RESUME_SCRUB_VH = 0.9;
 const PRACTICE_OVERVIEW_ID = "practice-overview";
@@ -70,6 +72,8 @@ export function ScrollScrubHero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const heroCopyRef = useRef<HTMLDivElement>(null);
+  const heroUpperRef = useRef<HTMLSpanElement>(null);
+  const heroLowerRef = useRef<HTMLSpanElement>(null);
   const targetTime = useRef(0);
   const currentTime = useRef(0);
   const seeking = useRef(false);
@@ -93,23 +97,31 @@ export function ScrollScrubHero() {
 
   useEffect(() => {
     const copy = heroCopyRef.current;
+    const upper = heroUpperRef.current;
+    const lower = heroLowerRef.current;
     if (!copy) return;
 
     const update = () => {
       if (reducedMotion) {
         copy.style.opacity = "1";
-        copy.style.transform = "none";
         copy.style.pointerEvents = "auto";
+        if (upper) upper.style.transform = "none";
+        if (lower) lower.style.transform = "none";
         return;
       }
 
       const fadeDistance = Math.max(window.innerHeight * HERO_COPY_FADE_VH, 1);
-      const progress = Math.min(Math.max(window.scrollY / fadeDistance, 0), 1);
-      const opacity = 1 - progress;
+      const slideDistance = Math.max(window.innerHeight * HERO_COPY_SLIDE_VH, 1);
+      const fadeProgress = Math.min(Math.max(window.scrollY / fadeDistance, 0), 1);
+      const slideProgress = Math.min(Math.max(window.scrollY / slideDistance, 0), 1);
+      // Mild ease so the fade is clear but not abrupt.
+      const opacity = Math.pow(1 - fadeProgress, 1.25);
+      const slide = slideProgress * window.innerWidth * 0.55;
 
       copy.style.opacity = String(opacity);
-      copy.style.transform = `translateY(${progress * -28}px)`;
       copy.style.pointerEvents = opacity < 0.05 ? "none" : "auto";
+      if (upper) upper.style.transform = `translateX(${-slide}px)`;
+      if (lower) lower.style.transform = `translateX(${slide}px)`;
     };
 
     update();
@@ -376,7 +388,7 @@ export function ScrollScrubHero() {
       </div>
 
       <section
-        className="relative z-10 flex min-h-[100svh] flex-col justify-between px-[var(--grid-gutter)] py-8 md:py-10"
+        className="relative z-10 -mt-[var(--header-h)] flex min-h-[100svh] flex-col justify-between px-[var(--grid-gutter)] pt-[calc(var(--header-h)+2rem)] pb-8 md:pb-10"
         aria-label="Opening sequence"
       >
         <div className="flex items-start justify-between gap-4">
@@ -399,9 +411,13 @@ export function ScrollScrubHero() {
             className="hero-copy-fade relative z-10 w-full text-center"
           >
             <h1 className="hero-headline text-[clamp(3.8rem,17vw,13rem)]">
-              <span className="hero-headline-upper">{homeHero.line1}</span>
+              <span ref={heroUpperRef} className="hero-headline-upper">
+                {homeHero.line1}
+              </span>
               <span className="hero-headline-legal">{homeHero.accentLegal}</span>
-              <span className="hero-headline-lower">{homeHero.line2}</span>
+              <span ref={heroLowerRef} className="hero-headline-lower">
+                {homeHero.line2}
+              </span>
             </h1>
             <p className="mx-auto mt-8 max-w-xl text-sm text-text-muted md:text-base">
               {homeHero.support}
