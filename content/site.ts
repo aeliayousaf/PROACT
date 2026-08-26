@@ -63,6 +63,10 @@ export const site = {
   ],
   nameMeaning:
     "Our name reflects our commitment to being Professional, conducting thorough Research, staying Organized, taking decisive Action, working Collaboratively, and ultimately Transforming complex legal challenges into practical, successful outcomes.",
+  aboutCommitment:
+    "ProAct Legal Solutions is committed to transforming legal challenges into strategic solutions across Ontario, providing clear, results-focused advocacy. The firm's ethos is reflected in its name, highlighting professionalism, thorough research, organizational skills, decisive action, collaboration, and a transformative approach to complex legal issues.",
+  aboutStandout:
+    "ProAct Legal Solutions stands out for its clear guidance, professional representation, transparent communication, and a commitment to proactive advocacy. They focus not just on representation, but on turning complex legal challenges into effective solutions. For those seeking reliable legal support, ProAct Legal Solutions is ready to assist, tailored to each unique situation.",
   cta: {
     headline: "Ready to move forward?",
     body: "Contact ProAct Legal Solutions today for professional, proactive legal support tailored to your situation.",

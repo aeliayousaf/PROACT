@@ -92,8 +92,19 @@ export function Footer() {
             ))}
           </div>
         </div>
-        <p className="mx-auto max-w-7xl px-[var(--grid-gutter)] pb-8 text-xs leading-relaxed text-text-muted/80">
+        <p className="mx-auto max-w-7xl px-[var(--grid-gutter)] pb-4 text-center text-[0.65rem] leading-relaxed text-text-muted/70">
           {site.disclaimerShort}
+        </p>
+        <p className="mx-auto max-w-7xl px-[var(--grid-gutter)] pb-8 text-center text-xs text-text-muted/70">
+          Site designed and developed by{" "}
+          <a
+            href="https://48cubes.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-text-muted no-underline transition-colors hover:text-gold"
+          >
+            48 Cubes Inc.
+          </a>
         </p>
       </div>
     </footer>

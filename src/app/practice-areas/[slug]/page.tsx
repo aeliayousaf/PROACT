@@ -65,16 +65,16 @@ export default async function PracticeAreaPage({ params }: Props) {
             {area.workflow.map((step, index) => (
               <li
                 key={step.title}
-                className="grid gap-3 border border-line p-5 md:grid-cols-[4rem_1fr]"
+                className="group grid gap-3 border border-line bg-ink/10 p-5 transition duration-300 ease-out hover:-translate-y-1 hover:border-gold/55 hover:bg-ink/35 hover:shadow-[0_12px_40px_rgba(0,0,0,0.28)] md:grid-cols-[4rem_1fr]"
               >
-                <span className="display-serif text-2xl text-gold">
+                <span className="display-serif text-2xl text-gold transition duration-300 group-hover:translate-x-0.5 group-hover:scale-110">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 <div>
-                  <h3 className="font-semibold tracking-wide text-warm-white">
+                  <h3 className="font-semibold tracking-wide text-warm-white transition-colors duration-300 group-hover:text-gold">
                     {step.title}
                   </h3>
-                  <p className="mt-2 text-sm text-text-muted">
+                  <p className="mt-2 text-sm text-text-muted transition-colors duration-300 group-hover:text-text">
                     {step.description}
                   </p>
                 </div>
