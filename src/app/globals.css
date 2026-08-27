@@ -140,7 +140,7 @@ a:hover {
   letter-spacing: 0.02em;
   line-height: 1;
   color: #ffffff;
-  margin-top: 0.02em;
+  margin-top: -0.18em;
   margin-inline: auto;
   text-align: center;
 }
@@ -412,4 +412,30 @@ a:hover {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+.digital-card-qr-frame {
+  display: grid;
+  place-items: center;
+  width: 11.5rem;
+  height: 11.5rem;
+  padding: 0.85rem;
+  border: 1px solid var(--line);
+  background: var(--warm-white);
+}
+
+.digital-card-qr-frame svg,
+.digital-card-qr-mark svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.practice-area-icon-wrap {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
 }

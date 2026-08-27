@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { practiceAreas } from "../../../content/practice-areas";
+import { PracticeAreaIcon } from "@/components/brand/PracticeAreaIcon";
 import { ScrollBlurReveal } from "@/components/motion/ScrollBlurReveal";
 import { Section } from "./Section";
 
@@ -78,16 +79,23 @@ export function PracticeOverview() {
         className="mt-8 grid gap-8 md:grid-cols-12"
       >
         <div className="md:col-span-7">
-          <h3 className="display-serif text-2xl text-warm-white md:text-3xl">
-            {current.title}
-          </h3>
-          <p className="mt-4 text-text-muted">{current.summary}</p>
-          <Link
-            href={`/practice-areas/${current.slug}`}
-            className="btn btn-ghost mt-8"
-          >
-            Explore this area
-          </Link>
+          <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+            <div className="practice-area-icon-wrap shrink-0 text-gold/80">
+              <PracticeAreaIcon slug={current.slug} className="h-24 w-24" />
+            </div>
+            <div className="min-w-0 flex-1">
+              <h3 className="display-serif text-2xl text-warm-white md:text-3xl">
+                {current.title}
+              </h3>
+              <p className="mt-4 text-text-muted">{current.summary}</p>
+              <Link
+                href={`/practice-areas/${current.slug}`}
+                className="btn btn-ghost mt-8"
+              >
+                Explore this area
+              </Link>
+            </div>
+          </div>
         </div>
         <div className="md:col-span-5">
           <ul className="space-y-3 border border-line/80 bg-ink/30 p-6 backdrop-blur-sm">
