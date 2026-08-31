@@ -1,9 +1,20 @@
 import OpenAI from "openai";
-import { getClientIp, rateLimit } from "@/lib/rate-limit";
+import { answerFromSiteKnowledge, streamTextResponse } from "@/lib/ai/local-chat";
 import { buildKnowledgeContext, chatSystemPrompt } from "@/lib/ai/system-prompt";
+import { getClientIp, rateLimit } from "@/lib/rate-limit";
 import { chatMessageSchema } from "@/lib/validation";
 
 export const runtime = "nodejs";
+
+function plainStreamResponse(stream: ReadableStream<Uint8Array>) {
+  return new Response(stream, {
+    headers: {
+      "Content-Type": "text/plain; charset=utf-8",
+      "Cache-Control": "no-store",
+      "X-Chat-Mode": "local",
+    },
+  });
+}
 
 export async function POST(request: Request) {
   const ip = getClientIp(request);
@@ -20,16 +31,6 @@ export async function POST(request: Request) {
           "Retry-After": String(limited.retryAfterSec),
         },
       },
-    );
-  }
-
-  if (!process.env.OPENAI_API_KEY) {
-    return new Response(
-      JSON.stringify({
-        error:
-          "The AI assistant is offline. Please use the contact form, phone, or email.",
-      }),
-      { status: 503, headers: { "Content-Type": "application/json" } },
     );
   }
 
@@ -51,7 +52,15 @@ export async function POST(request: Request) {
     });
   }
 
-  const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+  const apiKey = process.env.OPENAI_API_KEY?.trim();
+
+  // Fallback: answer from published site content when OpenAI is not configured.
+  if (!apiKey) {
+    const reply = answerFromSiteKnowledge(parsed.data.messages);
+    return plainStreamResponse(streamTextResponse(reply));
+  }
+
+  const openai = new OpenAI({ apiKey });
 
   try {
     const stream = await openai.chat.completions.create({
@@ -86,16 +95,13 @@ export async function POST(request: Request) {
       headers: {
         "Content-Type": "text/plain; charset=utf-8",
         "Cache-Control": "no-store",
+        "X-Chat-Mode": "openai",
       },
     });
   } catch (error) {
     console.error("Chat failed", error instanceof Error ? error.message : "unknown");
-    return new Response(
-      JSON.stringify({
-        error:
-          "The AI assistant could not respond. Please try again or contact the firm.",
-      }),
-      { status: 502, headers: { "Content-Type": "application/json" } },
-    );
+    // If OpenAI errors, fall back to the local site guide instead of failing hard.
+    const reply = answerFromSiteKnowledge(parsed.data.messages);
+    return plainStreamResponse(streamTextResponse(reply));
   }
 }

@@ -51,7 +51,7 @@ export function ChatWidget() {
   const [messages, setMessages] = useState<Msg[]>([
     {
       role: "assistant",
-      content: `Hello — I’m the ${site.name} AI assistant. I can share general information about our practice areas. I don’t give legal advice, and chatting here doesn’t create a professional relationship. Please don’t share confidential details.`,
+      content: `Hello — I’m the ${site.name} site assistant. I can share general information about our practice areas and how to reach the firm. I don’t give legal advice, and chatting here doesn’t create a professional relationship. Please don’t share confidential details.`,
     },
   ]);
   const listRef = useRef<HTMLDivElement>(null);
@@ -124,7 +124,7 @@ export function ChatWidget() {
     setMessages([
       {
         role: "assistant",
-        content: `Conversation reset. I’m an AI assistant for ${site.name}. I share general firm information only — not legal advice.`,
+        content: `Conversation reset. I’m a site assistant for ${site.name}. I share general firm information only — not legal advice.`,
       },
     ]);
     setError("");
@@ -141,7 +141,7 @@ export function ChatWidget() {
           <header className="flex items-start justify-between gap-3 border-b border-line bg-surface px-4 py-3">
             <div>
               <p className="text-sm font-semibold text-warm-white">
-                AI assistant
+                Site assistant
               </p>
               <p className="text-xs text-text-muted">
                 General information only — not legal advice
@@ -219,7 +219,7 @@ export function ChatWidget() {
         className="btn btn-primary !inline-flex !h-14 !w-14 !min-h-0 !items-center !justify-center !rounded-full !p-0 shadow-lg"
         aria-expanded={open}
         aria-controls={panelId}
-        aria-label={open ? "Close chat" : "Ask AI assistant"}
+        aria-label={open ? "Close chat" : "Ask site assistant"}
         onClick={() => setOpen((v) => !v)}
       >
         {open ? <CloseIcon /> : <SpeechIcon />}
