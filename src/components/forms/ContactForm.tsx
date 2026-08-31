@@ -32,19 +32,62 @@ export function ContactForm() {
     setErrors({});
     setServerError("");
 
+    const clientErrors: FieldErrors = {};
+    if (values.name.trim().length < 2) {
+      clientErrors.name = ["Please enter your name."];
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(values.email.trim())) {
+      clientErrors.email = ["Please enter a valid email address."];
+    }
+    if (values.phone.trim().length < 7) {
+      clientErrors.phone = ["Please enter a phone number."];
+    } else if (!/^[0-9+\-().\s]+$/.test(values.phone.trim())) {
+      clientErrors.phone = ["Phone number contains invalid characters."];
+    }
+    if (!values.practiceArea) {
+      clientErrors.practiceArea = ["Please select a practice area."];
+    }
+    if (values.message.trim().length < 10) {
+      clientErrors.message = ["Please include a brief message (at least 10 characters)."];
+    }
+    if (!values.consent) {
+      clientErrors.consent = ["Consent is required before submitting."];
+    }
+
+    if (Object.keys(clientErrors).length > 0) {
+      setErrors(clientErrors);
+      setServerError("Please fix the highlighted fields and try again.");
+      setStatus("error");
+      return;
+    }
+
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...values,
-          consent: values.consent ? true : false,
+          preferredContact: values.preferredContact as
+            | "email"
+            | "phone"
+            | "either",
+          consent: Boolean(values.consent),
         }),
       });
       const data = await res.json();
       if (!res.ok) {
         setErrors(data.fields ?? {});
-        setServerError(data.error ?? "Submission failed.");
+        const fieldMessages = data.fields
+          ? Object.values(data.fields as FieldErrors)
+              .flat()
+              .filter(Boolean)
+              .slice(0, 3)
+          : [];
+        setServerError(
+          fieldMessages.length
+            ? fieldMessages.join(" ")
+            : (data.error ?? "Submission failed."),
+        );
         setStatus("error");
         return;
       }

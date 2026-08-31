@@ -30,10 +30,13 @@ export async function POST(request: Request) {
 
   const parsed = contactSchema.safeParse(body);
   if (!parsed.success) {
+    const fields = parsed.error.flatten().fieldErrors;
+    const firstMessage =
+      Object.values(fields).flat().find(Boolean) ?? "Validation failed.";
     return NextResponse.json(
       {
-        error: "Validation failed.",
-        fields: parsed.error.flatten().fieldErrors,
+        error: firstMessage,
+        fields,
       },
       { status: 400 },
     );
