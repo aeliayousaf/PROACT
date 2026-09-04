@@ -21,6 +21,7 @@ export const site = {
     linkedin: "https://www.linkedin.com/in/proact-legal-6a0008434/",
     x: "https://x.com/proactlegals",
     facebook: "https://www.facebook.com/share/1LR2CgE8N6/?mibextid=wwXIfr",
+    tiktok: "https://www.tiktok.com/@proact.legal",
     digitalCard: {
       title: "Digital business card",
       body: "Scan the Chip QR code to save contact details instantly. Works with any smartphone camera — no app required.",

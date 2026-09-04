@@ -24,6 +24,7 @@ export function buildFounderVCard() {
     `URL:${founder.linkedin}`,
     `URL:${founder.x}`,
     `URL:${founder.facebook}`,
+    `URL:${founder.tiktok}`,
     `URL:${site.website}`,
     "END:VCARD",
   ].join("\n");

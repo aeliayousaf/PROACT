@@ -28,6 +28,14 @@ function IconFacebook({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function IconTikTok({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.03v13.66a2.74 2.74 0 1 1-1.94-2.65V9.93a5.78 5.78 0 0 0-1.02-.09 5.78 5.78 0 1 0 5.78 5.78V9.3a8.16 8.16 0 0 0 4.77 1.52V7.79a4.85 4.85 0 0 1-.79-.1Z" />
+    </svg>
+  );
+}
+
 function IconMail({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
@@ -123,6 +131,15 @@ export default function ProfessionalsPage() {
                 aria-label="Facebook"
               >
                 <IconFacebook className="h-5 w-5" />
+              </a>
+              <a
+                href={founder.tiktok}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost !px-3"
+                aria-label="TikTok"
+              >
+                <IconTikTok className="h-5 w-5" />
               </a>
               <a href={site.emailHref} className="btn btn-ghost">
                 <IconMail />
