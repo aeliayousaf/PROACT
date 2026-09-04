@@ -93,19 +93,19 @@ export default function ProfessionalsPage() {
                 href={founder.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-ghost"
+                className="btn btn-ghost !px-3"
+                aria-label="LinkedIn"
               >
-                <IconLinkedIn />
-                LinkedIn
+                <IconLinkedIn className="h-5 w-5" />
               </a>
               <a
                 href={founder.x}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn btn-ghost"
+                className="btn btn-ghost !px-3"
+                aria-label="X"
               >
-                <IconX />
-                X
+                <IconX className="h-5 w-5" />
               </a>
               <a href={site.emailHref} className="btn btn-ghost">
                 <IconMail />
