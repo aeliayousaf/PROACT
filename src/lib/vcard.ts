@@ -23,6 +23,7 @@ export function buildFounderVCard() {
     `EMAIL;TYPE=INTERNET:${site.email}`,
     `URL:${founder.linkedin}`,
     `URL:${founder.x}`,
+    `URL:${founder.facebook}`,
     `URL:${site.website}`,
     "END:VCARD",
   ].join("\n");
