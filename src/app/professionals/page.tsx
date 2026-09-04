@@ -12,6 +12,14 @@ function IconLinkedIn({ className = "h-4 w-4" }: { className?: string }) {
   );
 }
 
+function IconX({ className = "h-4 w-4" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M18.244 2H21.5l-7.5 8.57L22.5 22h-6.29l-4.93-6.44L5.7 22H2.44l8.02-9.16L1.5 2h6.45l4.45 5.9L18.244 2Zm-1.1 18.1h1.75L7.01 3.8H5.14l11.999 16.3Z" />
+    </svg>
+  );
+}
+
 function IconMail({ className = "h-4 w-4" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="none" aria-hidden className={className}>
@@ -89,6 +97,15 @@ export default function ProfessionalsPage() {
               >
                 <IconLinkedIn />
                 LinkedIn
+              </a>
+              <a
+                href={founder.x}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-ghost"
+              >
+                <IconX />
+                X
               </a>
               <a href={site.emailHref} className="btn btn-ghost">
                 <IconMail />

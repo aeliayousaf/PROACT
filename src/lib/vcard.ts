@@ -22,6 +22,7 @@ export function buildFounderVCard() {
     `TEL;TYPE=WORK,VOICE:+${phone.startsWith("1") ? phone : `1${phone}`}`,
     `EMAIL;TYPE=INTERNET:${site.email}`,
     `URL:${founder.linkedin}`,
+    `URL:${founder.x}`,
     `URL:${site.website}`,
     "END:VCARD",
   ].join("\n");

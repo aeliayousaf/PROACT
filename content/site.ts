@@ -18,7 +18,8 @@ export const site = {
     image: "/images/percy-web.jpg",
     imageAlt:
       "Percy Adjei Laryea, founder of ProAct Legal Solutions, in a light gray suit and navy tie",
-    linkedin: "https://www.linkedin.com/in/percylaryea",
+    linkedin: "https://www.linkedin.com/in/proact-legal-6a0008434/",
+    x: "https://x.com/proactlegals",
     digitalCard: {
       title: "Digital business card",
       body: "Scan the Chip QR code to save contact details instantly. Works with any smartphone camera — no app required.",
