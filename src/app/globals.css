@@ -417,13 +417,14 @@ a:hover {
 .digital-card-qr-frame {
   display: grid;
   place-items: center;
-  width: 11.5rem;
-  height: 11.5rem;
-  padding: 0.85rem;
-  border: 1px solid var(--line);
-  background: var(--warm-white);
+  width: 13rem;
+  height: 13rem;
+  padding: 0;
+  border: none;
+  background: transparent;
 }
 
+.digital-card-qr-frame img,
 .digital-card-qr-frame svg,
 .digital-card-qr-mark svg {
   display: block;

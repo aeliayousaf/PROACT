@@ -6,8 +6,8 @@ export const site = {
     "ProAct Legal Solutions delivers clear, strategic, and results-focused advocacy across Ontario.",
   phone: "416-822-6860",
   phoneHref: "tel:+14168226860",
-  email: "info.ptls@gmail.com",
-  emailHref: "mailto:info.ptls@gmail.com",
+  email: "info@proactlegal.com",
+  emailHref: "mailto:info@proactlegal.com",
   website: "https://www.proactlegalsolutions.com",
   jurisdiction: "Ontario",
   founder: {
@@ -24,9 +24,8 @@ export const site = {
     tiktok: "https://www.tiktok.com/@proact.legal",
     digitalCard: {
       title: "Digital business card",
-      body: "Scan the Chip QR code to save contact details instantly. Works with any smartphone camera — no app required.",
-      /** Set to a static asset path (e.g. /brand/founder-chip-qr.png) to use a printed Chip card QR. */
-      qrImage: "",
+      body: "Scan the QR Code Chimp code to save contact details instantly. Works with any smartphone camera — no app required.",
+      qrImage: "/brand/qr-code-chimp.png",
     },
   },
   ethos: [

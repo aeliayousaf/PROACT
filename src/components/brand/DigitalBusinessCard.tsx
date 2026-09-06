@@ -11,9 +11,9 @@ export async function DigitalBusinessCard() {
       <Image
         src={digitalCard.qrImage}
         alt={`${site.founder.name} digital business card QR code`}
-        width={180}
-        height={180}
-        className="h-[180px] w-[180px] object-contain"
+        width={200}
+        height={200}
+        className="h-[200px] w-[200px] object-contain"
       />
     );
   }

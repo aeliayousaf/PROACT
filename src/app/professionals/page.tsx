@@ -159,7 +159,7 @@ export default function ProfessionalsPage() {
                 </div>
                 <div className="max-w-md">
                   <h3 className="display-serif text-xl text-warm-white">
-                    Chip QR code
+                    QR Code Chimp
                   </h3>
                   <p className="mt-3 text-sm text-text-muted md:text-base">
                     {founder.digitalCard.body}
